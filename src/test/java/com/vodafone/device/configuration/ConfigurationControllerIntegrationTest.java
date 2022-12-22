@@ -62,7 +62,7 @@ class ConfigurationControllerIntegrationTest {
 	void testUpdateDeviceWhenDeviceAlreadyActivated() throws Exception {
 		when(configurationService.activateDevice(ID_2)).thenThrow(DeviceAlreadyActivatedException.class);
 		mockMvc.perform(put(ACTIVATE_DEVICE_URI + ID_2).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isBadRequest());
+				.andExpect(status().isConflict());
 		verify(configurationService, times(1)).activateDevice(ID_2);
 	}
 	

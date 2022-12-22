@@ -22,7 +22,7 @@ public class DeviceExceptionHander extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(DeviceAlreadyActivatedException.class)
 	public ResponseEntity<Object> deviceNotActivatedException(DeviceAlreadyActivatedException ex, WebRequest request) {
 		ErrorResponse errorResponse = new ErrorResponse(new Date(), ex.getMessage());
-		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler({ RestClientException.class, Exception.class })
